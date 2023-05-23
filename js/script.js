@@ -1,14 +1,21 @@
-import {API_KEY} from '../config.js';
+// import { API_KEY } from '../config';
+
+const API_KEY='1df61d3a3b597246bfd842cf77f33674'
+
 
 const api = API_KEY
 
-const textInput = document.getElementById('textInput')
+const input = document.getElementById('locationInput')
 const forecast = document.getElementById("infoForecast");
 const high = document.getElementById("infoHigh");
 const low = document.getElementById("infoLow");
 const temp = document.getElementById("infoTemp");
 const feels = document.getElementById("infoFeels");
 const humidity = document.getElementById("infoHumidity");
+const choice = document.getElementById('locationChoice');
+const tempUnit = document.getElementById('tempUnit');
+const header = document.getElementById('cityHeader')
+// const input = document.getElementById('locationInput')
 
 async function apiWeatherCall(input, zipOrCity, unit) {
     // call out api using iterate operator to choose between city or zip in api link
@@ -25,22 +32,17 @@ async function apiWeatherCall(input, zipOrCity, unit) {
 }
 
 console.log(apiWeatherCall('dallas', 'city', 'standard'))
+apiWeatherCall('dallas', 'city', 'standard')
 
-(async () => {
-    const data = await apiWeatherCall("dallas", "city", "imperial");
-    fillData(data);
-  })();
 
-  weatherForm.addEventListener("submit", async event => {
+weatherForm.addEventListener("submit", async event => {
     event.preventDefault();
-        const data = await apiWeatherCall(input.value, choice.value, tempUnit.value)
-        // Optional parameter if the filter is Zip Code
-        // for reusable code
-        if (choice.value == 'zip') {
-            fillData(data, textInput.value)
-        } else {
-            fillData(data)
-        }
+    const data = await apiWeatherCall(input.value, choice.value, tempUnit.value)
+    if (choice.value == 'zip') {
+        fillData(data, input.value)
+    } else {
+        fillData(data)
+    }
 });
 
 function fillData(data, zip=null) {
@@ -53,3 +55,7 @@ function fillData(data, zip=null) {
     feels.innerText = `${Math.round(data.main.feels_like)}°`
     humidity.innerText = `${Math.round(data.main.humidity)}%`
 }
+(async () => {
+    const data = await apiWeatherCall("97230", "zip", "imperial");
+    fillData(data);
+  })();

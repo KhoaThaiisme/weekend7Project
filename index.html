@@ -16,7 +16,7 @@
                 <option value="city" selected>City</option>
                 <option value="zip">Zip</option>
             </select>
-            <input type="text" id="textInput" name="textInput" class="controlForm" placeholder="City">
+            <input type="text" id="locationInput" name="textInput" class="controlForm" placeholder="City">
             <select id="tempUnit" class="selectForm" aria-label="Temperature unit">
                 <option value="imperial" selected>°F</option>
                 <option value="metric">°C</option>
@@ -27,6 +27,24 @@
         <div class="validationContainer">
             <p id="validText"></p>
         </div>
+        <main class="content">
+            <div id="infoContainer">
+                
+                <p class="forecast mpl_0" id="infoForecast"></p>
+                <h2 id="cityHeader" class="cityHeadClass mpl_0"></h2>
+                <h1 id="infoTemp" class="tempClass mpl_0"></h1>
+                <p class="mpl_0">Feels Like <span id="infoFeels"></span></p>
+                
+                <p class="mpl_0">
+                    High: <span id="infoHigh"></span>
+                    <span> </span>
+                    Low: <span id="infoLow"></span>
+                </p>
+                <p class="mpl_0">Humidity: 
+                    <span id="infoHumidity"></span>
+                </p>
+            </div>
+        </main> 
     </nav>
 </body>
 </html>
